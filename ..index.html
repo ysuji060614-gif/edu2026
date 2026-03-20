@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>말랑말랑 AI 윤리 교실</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+        
+        body {
+            font-family: 'Nanum Gothic', sans-serif;
+            background-color: #f0f7ff;
+        }
+
+        .section { display: none; }
+        .section.active { display: block; animation: fadeIn 0.5s ease; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 2px solid #e2e8f0;
+            padding: 1.5rem;
+        }
+
+        /* 인포그래픽 모달 */
+        #modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        #modal.active { display: flex; }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- 이미지 확대 모달 -->
+    <div id="modal" onclick="closeModal()">
+        <div class="relative max-w-4xl w-full" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute -top-12 right-0 text-white text-3xl font-bold">✕ 닫기</button>
+            <img src="https://api.clippat.com/api/v1/outputs/67639535c596396e95b0646c/f2f53d86-a05e-49b5-9057-0b16a04809f6.png" class="w-full rounded-xl shadow-2xl">
+        </div>
+    </div>
+
+    <!-- 상단 네비게이션 -->
+    <nav class="sticky top-0 bg-white border-b-4 border-blue-400 z-50 shadow-md">
+        <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+            <button onclick="showSection('home')" class="flex items-center gap-2 text-blue-600 font-extrabold text-xl hover:scale-105 transition-transform">
+                <span>🏠</span>
+                <span>홈으로</span>
+            </button>
+            <div class="flex gap-4 font-bold text-slate-500 overflow-x-auto">
+                <button onclick="showSection('lesson')" class="nav-btn whitespace-nowrap" data-sec="lesson">1.수업하기</button>
+                <button onclick="showSection('trolley')" class="nav-btn whitespace-nowrap" data-sec="trolley">2.토론하기</button>
+                <button onclick="showSection('quiz')" class="nav-btn whitespace-nowrap" data-sec="quiz">3.퀴즈왕</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto p-6">
+        
+        <!-- 1. 홈 / 시작하기 -->
+        <section id="home" class="section active space-y-8 text-center">
+            <div class="card border-blue-200 bg-gradient-to-b from-white to-blue-50 py-12">
+                <h1 class="text-3xl md:text-4xl font-black text-blue-700 mb-4 leading-tight">
+                    인공지능의 선택, 우리의 미래<br>트롤리 딜레마와 자율주행
+                </h1>
+                <p class="text-slate-600 mb-8 font-medium italic">"인공지능은 정말로 공정할까요?"</p>
+                
+                <!-- 인포그래픽 미리보기 영역 -->
+                <div class="max-w-md mx-auto mb-10 group cursor-pointer" onclick="openModal()">
+                    <p class="text-sm font-bold text-blue-500 mb-2">▼ 클릭해서 인포그래픽 크게 보기</p>
+                    <div class="relative overflow-hidden rounded-2xl border-4 border-white shadow-lg group-hover:border-blue-300 transition-all">
+                        <img src="https://api.clippat.com/api/v1/outputs/67639535c596396e95b0646c/f2f53d86-a05e-49b5-9057-0b16a04809f6.png" alt="인포그래픽" class="w-full h-auto">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                </div>
+
+                <button onclick="showSection('lesson')" class="bg-blue-600 hover:bg-blue-700 text-white px-12 py-5 rounded-full font-black text-2xl shadow-xl hover:-translate-y-1 transition-all">
+                    수업 시작하기! 🚀
+                </button>
+            </div>
+        </section>
+
+        <!-- 2. 수업 설명 파트 -->
+        <section id="lesson" class="section space-y-6">
+            <h2 class="text-2xl font-black text-slate-800 border-l-8 border-blue-500 pl-4 mb-6">STEP 1. 인공지능 윤리 이해하기</h2>
+            
+            <div class="card border-purple-100">
+                <h3 class="text-xl font-bold text-purple-700 mb-3 flex items-center gap-2">
+                    <span>🤔</span> AI는 왜 완벽하지 않을까요? (편향성)
+                </h3>
+                <p class="text-slate-600 leading-relaxed">
+                    인공지능은 스스로 가치를 깨닫는 존재가 아니에요. 우리가 준 <b>'데이터(공부 재료)'</b>를 보고 배우는 시스템일 뿐이죠. 
+                    만약 공부 재료에 편견이 섞여 있다면, 인공지능도 삐뚤어진 판단을 내릴 수 있어요. 
+                    우리는 이를 인공지능의 <b>'편향성'</b>이라고 불러요.
+                </p>
+            </div>
+
+            <div class="card border-green-100">
+                <h3 class="text-xl font-bold text-green-700 mb-3 flex items-center gap-2">
+                    <span>🌍</span> 문화마다 생각이 달라요!
+                </h3>
+                <p class="text-slate-600 leading-relaxed mb-4">
+                    MIT 연구에 따르면 자율주행 차가 누구를 보호할지에 대한 생각은 나라마다 달랐어요.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-blue-50 p-4 rounded-xl">
+                        <p class="font-bold text-blue-800">서구권 (미국/유럽)</p>
+                        <p class="text-sm">"어린이를 우선 보호하자!"</p>
+                    </div>
+                    <div class="bg-orange-50 p-4 rounded-xl">
+                        <p class="font-bold text-orange-800">동양권 (한국/중국)</p>
+                        <p class="text-sm">"노인을 우선 보호하자!"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button onclick="showSection('trolley')" class="bg-slate-800 text-white px-8 py-3 rounded-xl font-bold hover:bg-black transition-all">
+                    다음: 트롤리 딜레마 토론하기 ➡️
+                </button>
+            </div>
+        </section>
+
+        <!-- 3. 토론 파트 -->
+        <section id="trolley" class="section space-y-6">
+            <h2 class="text-2xl font-black text-slate-800 border-l-8 border-red-500 pl-4 mb-6">STEP 2. 당신의 선택은? (트롤리 딜레마)</h2>
+            
+            <div class="card bg-red-50 border-red-200">
+                <p class="font-bold text-red-800 mb-2">⚠️ 긴급 상황!</p>
+                <p class="text-slate-700 font-medium">
+                    브레이크가 고장 난 기차가 달려옵니다. 그대로 두면 5명이 다치고, 레버를 당겨 길을 바꾸면 옆길의 1명이 다칩니다. 
+                    인공지능은 어떤 선택을 내리도록 설계되어야 할까요?
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="card hover:border-blue-400 cursor-pointer transition-all" onclick="showFeedback('lever')">
+                    <p class="font-bold text-lg">💡 선택 A: 레버를 당겨서 5명을 구한다.</p>
+                    <p id="lever-fb" class="hidden text-sm text-blue-600 mt-2 bg-blue-50 p-2 rounded">실제 연구 결과, 89%의 사람들이 이 선택이 더 도덕적이라고 느꼈어요.</p>
+                </div>
+                <div class="card hover:border-red-400 cursor-pointer transition-all" onclick="showFeedback('push')">
+                    <p class="font-bold text-lg">💡 선택 B: 레버 없이 직접 사람을 밀어 멈춘다.</p>
+                    <p id="push-fb" class="hidden text-sm text-red-600 mt-2 bg-red-50 p-2 rounded">단 11%의 사람만 찬성했어요. 사람들은 직접적인 가해에 큰 거부감을 느껴요.</p>
+                </div>
+            </div>
+
+            <div class="text-center pt-6">
+                <button onclick="showSection('quiz')" class="bg-orange-500 text-white px-10 py-4 rounded-full font-black text-xl shadow-lg hover:bg-orange-600 transition-all">
+                    최종 미션: 퀴즈왕 도전! 🏆
+                </button>
+            </div>
+        </section>
+
+        <!-- 4. 퀴즈 파트 -->
+        <section id="quiz" class="section">
+            <div id="quiz-container" class="card border-yellow-300">
+                <!-- 퀴즈 데이터 동적 로드 -->
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // 섹션 전환
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if(btn.dataset.sec === id) btn.classList.add('text-blue-600', 'underline');
+                else btn.classList.remove('text-blue-600', 'underline');
+            });
+
+            if(id === 'quiz') startQuiz();
+            window.scrollTo(0, 0);
+        }
+
+        // 모달 제어
+        function openModal() { document.getElementById('modal').classList.add('active'); }
+        function closeModal() { document.getElementById('modal').classList.remove('active'); }
+
+        // 토론 피드백
+        function showFeedback(id) {
+            document.getElementById(id + '-fb').classList.remove('hidden');
+        }
+
+        // 퀴즈 시스템
+        let currentQ = 0;
+        let score = 0;
+        const questions = [
+            { q: "인공지능이 중립적이지 않고 삐뚤어진 판단을 내리는 성질을 무엇이라 하나요?", a: ["편향성", "편안함", "적응성"], c: 0 },
+            { q: "트롤리 딜레마 연구에서 동양권 국가가 상대적으로 더 보호하려 했던 대상은?", a: ["어린이", "노인", "운동선수"], c: 1 },
+            { q: "인공지능 윤리 기준을 정할 때 가장 중요한 것은 무엇일까요?", a: ["컴퓨터 성능", "비싼 가격", "사회의 약속과 합의"], c: 2 }
+        ];
+
+        function startQuiz() {
+            currentQ = 0;
+            score = 0;
+            renderQuiz();
+        }
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            if(currentQ < questions.length) {
+                const item = questions[currentQ];
+                container.innerHTML = `
+                    <div class="text-center">
+                        <p class="text-orange-500 font-bold mb-2">Question ${currentQ+1}</p>
+                        <h3 class="text-2xl font-black mb-8">${item.q}</h3>
+                        <div class="grid gap-3">
+                            ${item.a.map((opt, i) => `
+                                <button onclick="checkAnswer(${i})" class="w-full py-4 px-6 rounded-2xl border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 font-bold transition-all">
+                                    ${opt}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="text-center py-10">
+                        <p class="text-5xl mb-4">⭐</p>
+                        <h3 class="text-3xl font-black mb-4">미션 완료!</h3>
+                        <p class="text-lg text-slate-600 mb-8">당신은 이제 인공지능 윤리 전문가예요!</p>
+                        <button onclick="showSection('home')" class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold">처음으로</button>
+                    </div>
+                `;
+            }
+        }
+
+        function checkAnswer(idx) {
+            if(idx === questions[currentQ].c) score++;
+            currentQ++;
+            renderQuiz();
+        }
+    </script>
+</body>
+</html>
