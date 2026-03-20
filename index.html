@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리나라의 발전과 민주주의</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        // Tailwind dark mode configuration
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nanum+Gothic:wght@400;700;800&display=swap');
+        
+        body {
+            font-family: 'Nanum Gothic', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .font-gaegu {
+            font-family: 'Gaegu', cursive;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #48c6ef 0%, #6f86d6 100%);
+        }
+        /* Dark mode gradient adjustment */
+        .dark .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #312e81 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #6f86d6;
+        }
+        .dark .timeline-item::before {
+            background: #818cf8;
+        }
+        .quiz-option {
+            cursor: pointer;
+            border: 2px solid #e2e8f0;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            transition: all 0.2s;
+            background: white;
+            width: 100%;
+            text-align: center;
+            font-weight: 600;
+        }
+        .dark .quiz-option {
+            background-color: #1f2937;
+            border-color: #374151;
+            color: #e5e7eb;
+        }
+        .quiz-option:hover {
+            background-color: #ebf4ff;
+            border-color: #6f86d6;
+        }
+        .dark .quiz-option:hover {
+            background-color: #374151;
+            border-color: #818cf8;
+        }
+        .practice-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .practice-card:hover {
+            background-color: #f3f4f6;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .dark .practice-card:hover {
+            background-color: #374151;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-900 dark:text-slate-100">
+
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="fixed bottom-6 right-6 z-[100] p-4 bg-white dark:bg-slate-800 shadow-2xl rounded-full border border-slate-200 dark:border-slate-700 transition-all hover:scale-110">
+        <span id="theme-toggle-dark-icon" class="hidden text-xl">🌙</span>
+        <span id="theme-toggle-light-icon" class="hidden text-xl text-yellow-400">☀️</span>
+    </button>
+
+    <!-- Hero Section -->
+    <header class="gradient-bg text-white py-20 px-6 text-center shadow-lg transition-all">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-5xl font-extrabold mb-4 font-gaegu">🇰🇷 당당한 우리나라, 우리가 만든 역사</h1>
+            <p class="text-xl opacity-90 mb-8">산업화의 기적과 민주화의 함성을 함께 알아볼까요?</p>
+            <div class="flex justify-center gap-4">
+                <a href="#content" class="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-8 rounded-full shadow-md transition-all dark:bg-slate-800 dark:text-blue-400 dark:hover:bg-slate-700">
+                    수업 시작하기
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav id="content" class="sticky top-0 bg-white dark:bg-slate-800 shadow-md z-50 transition-colors">
+        <div class="max-w-2xl mx-auto flex">
+            <button onclick="openTab('industry')" id="tab-industry" class="flex-1 py-4 text-center font-bold text-blue-600 border-b-4 border-blue-600 focus:outline-none cursor-pointer">
+                🏗️ 경제 성장(산업화)
+            </button>
+            <button onclick="openTab('democracy')" id="tab-democracy" class="flex-1 py-4 text-center font-bold text-gray-500 border-b-4 border-transparent hover:text-blue-600 focus:outline-none cursor-pointer dark:text-gray-400">
+                🗳️ 민주주의(민주화)
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto py-12 px-6">
+        
+        <!-- Tab 1: Industry -->
+        <section id="industry" class="tab-content active">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-blue-800 dark:text-blue-400 mb-4">"한강의 기적" 경제 성장</h2>
+                <p class="text-gray-600 dark:text-gray-400">가난을 이겨내고 세계적인 경제 대국이 된 과정을 살펴봅시다.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-xl card-hover border-t-8 border-orange-400 text-center">
+                    <div class="text-4xl mb-4">🏭</div>
+                    <h3 class="text-xl font-bold mb-3">공업의 발전</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">경공업에서 중화학 공업까지 우리 기술로 수많은 물건을 만들었어요.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-xl card-hover border-t-8 border-blue-400 text-center">
+                    <div class="text-4xl mb-4">🛣️</div>
+                    <h3 class="text-xl font-bold mb-3">기반 시설 확충</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">고속국도와 포항 제철소 등을 건설하며 성장의 발판을 마련했어요.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-xl card-hover border-t-8 border-yellow-400 text-center">
+                    <div class="text-4xl mb-4">💻</div>
+                    <h3 class="text-xl font-bold mb-3">정보통신 강국</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">이제는 반도체와 IT 기술로 세계를 선도하는 나라가 되었답니다.</p>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-inner border-2 border-dashed border-blue-200 dark:border-blue-900 transition-colors">
+                <h3 class="text-2xl font-bold text-center mb-6">🏆 도전! 산업화 마스터 퀴즈</h3>
+                <div id="quiz-industry-box" class="max-w-xl mx-auto">
+                    <div id="q-ind-1" class="quiz-step">
+                        <p class="text-lg font-bold mb-4 text-center">1단계: 1960년대 초창기에 발달한, 옷이나 신발 같은 가벼운 물건을 만드는 공업은?</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button onclick="checkStep('ind', 1, false)" class="quiz-option">중화학 공업</button>
+                            <button onclick="checkStep('ind', 1, true)" class="quiz-option">경공업</button>
+                        </div>
+                    </div>
+                    <div id="q-ind-2" class="quiz-step hidden">
+                        <p class="text-lg font-bold mb-4 text-center">2단계: 1970년 완공되어 물자 수송에 큰 역할을 한 '경제의 대동맥'은?</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button onclick="checkStep('ind', 2, true)" class="quiz-option">경부 고속국도</button>
+                            <button onclick="checkStep('ind', 2, false)" class="quiz-option">서해안 고속국도</button>
+                        </div>
+                    </div>
+                    <div id="q-ind-3" class="quiz-step hidden">
+                        <p class="text-lg font-bold mb-4 text-center">3단계: 가난한 나라에서 선진국이 된 우리나라의 비약적인 발전을 무엇이라 하나요?</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button onclick="checkStep('ind', 3, false)" class="quiz-option">미라클 코리아</button>
+                            <button onclick="checkStep('ind', 3, true)" class="quiz-option">한강의 기적</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="quiz-msg-ind" class="text-center mt-4 font-bold h-6"></div>
+            </div>
+        </section>
+
+        <!-- Tab 2: Democracy -->
+        <section id="democracy" class="tab-content">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-purple-800 dark:text-purple-400 mb-4">민주주의를 향한 위대한 발걸음</h2>
+                <p class="text-gray-600 dark:text-gray-400">자유와 정의를 지키기 위해 노력한 우리 이웃들의 역사입니다.</p>
+            </div>
+
+            <div class="relative border-l-2 border-purple-200 dark:border-purple-900 ml-4 pl-8 space-y-12 mb-16">
+                <div class="timeline-item relative">
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-lg border-l-4 border-purple-500 card-hover">
+                        <h3 class="text-xl font-bold text-purple-700 dark:text-purple-300">4·19 혁명 (1960)</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm leading-relaxed">독재 정권의 부정선거에 맞서 학생과 시민들이 민주주의를 요구하며 일어났습니다. 우리 국민의 힘으로 민주주의를 지켜낼 수 있다는 희망을 보여주었습니다.</p>
+                    </div>
+                </div>
+                <div class="timeline-item relative">
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-lg border-l-4 border-purple-500 card-hover">
+                        <h3 class="text-xl font-bold text-purple-700 dark:text-purple-300">5·18 민주화 운동 (1980)</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm leading-relaxed">군부 독재의 탄압에 저항하여 광주 시민들이 민주주의와 자유를 외쳤습니다. 이 운동은 이후 우리나라 민주화의 중요한 밑거름이 되었습니다.</p>
+                    </div>
+                </div>
+                <div class="timeline-item relative">
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-lg border-l-4 border-purple-500 card-hover">
+                        <h3 class="text-xl font-bold text-purple-700 dark:text-purple-300">6월 민주 항쟁 (1987)</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm leading-relaxed">전 국민이 한마음으로 거리에 나와 대통령을 국민이 직접 뽑는 '직선제'를 이끌어냈습니다. 이를 통해 현대 민주주의의 기틀이 마련되었습니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-gradient-to-r from-purple-100 to-blue-100 dark:from-slate-800 dark:to-slate-700 rounded-3xl p-10 text-center transition-all">
+                <h3 class="text-2xl font-bold mb-6">🗳️ 일상에서 실천하는 민주주의</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-8">* 각 항목을 클릭하면 참여 및 학습 사이트로 이동합니다.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                    <a href="https://www.epeople.go.kr/idea/index.npaid" target="_blank" class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border-b-4 border-purple-400 practice-card">
+                        <div class="text-2xl mb-2">📢</div>
+                        <p class="font-bold">학급 회의에서<br>내 의견 말하기</p>
+                    </a>
+                    <a href="https://www.civicedu.go.kr/" target="_blank" class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border-b-4 border-purple-400 practice-card">
+                        <div class="text-2xl mb-2">🤝</div>
+                        <p class="font-bold">다수결의 원칙과<br>소수 의견 존중하기</p>
+                    </a>
+                    <a href="https://www.kvoting.go.kr/" target="_blank" class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border-b-4 border-purple-400 practice-card">
+                        <div class="text-2xl mb-2">🗳️</div>
+                        <p class="font-bold">학교 선거에<br>관심 갖고 투표하기</p>
+                    </a>
+                    <a href="https://www.edunet.net/nedu/ncsearch/listIntgrIndivForm.do?menu_id=605&contents_id=&st_nm_code=ST0002&srch_txt=%EB%AF%BC%EC%A3%BC%EC%A3%BC%EC%9D%98" target="_blank" class="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border-b-4 border-purple-400 practice-card">
+                        <div class="text-2xl mb-2">❤️</div>
+                        <p class="font-bold">서로 다른 점을<br>인정하고 대화하기</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-100 dark:bg-slate-950 py-10 text-center border-t border-gray-200 dark:border-slate-800 transition-colors">
+        <p class="text-gray-500 dark:text-gray-400 text-sm">© 2025 초등 사회 발전사 수업. 자랑스러운 역사를 기억해요!</p>
+    </footer>
+
+    <script>
+        // Dark Mode Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Check preference on load
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            lightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            darkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            // Toggle icons
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+
+            // Toggle theme
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+
+        // Tab Logic
+        function openTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            const target = document.getElementById(tabName);
+            if (target) target.classList.add('active');
+
+            const isInd = tabName === 'industry';
+            const tabInd = document.getElementById('tab-industry');
+            const tabDemo = document.getElementById('tab-democracy');
+
+            if (tabInd && tabDemo) {
+                if (isInd) {
+                    tabInd.className = "flex-1 py-4 text-center font-bold text-blue-600 border-b-4 border-blue-600 cursor-pointer";
+                    tabDemo.className = "flex-1 py-4 text-center font-bold text-gray-500 border-b-4 border-transparent hover:text-blue-600 cursor-pointer dark:text-gray-400";
+                } else {
+                    tabInd.className = "flex-1 py-4 text-center font-bold text-gray-500 border-b-4 border-transparent hover:text-blue-600 cursor-pointer dark:text-gray-400";
+                    tabDemo.className = "flex-1 py-4 text-center font-bold text-purple-600 border-b-4 border-purple-600 cursor-pointer dark:text-purple-400";
+                }
+            }
+        }
+
+        // Quiz Logic
+        function checkStep(category, step, isCorrect) {
+            const msg = document.getElementById(`quiz-msg-${category}`);
+            if (!msg) return;
+
+            if (isCorrect) {
+                if (step === 3) {
+                    finishQuiz(category);
+                } else {
+                    msg.textContent = "딩동댕! 정답입니다. 다음 단계로! ➡️";
+                    msg.className = "text-center mt-4 font-bold text-green-600 dark:text-green-400";
+                    setTimeout(() => {
+                        const currentStep = document.getElementById(`q-${category}-${step}`);
+                        const nextStep = document.getElementById(`q-${category}-${step + 1}`);
+                        if (currentStep) currentStep.classList.add('hidden');
+                        if (nextStep) nextStep.classList.remove('hidden');
+                        msg.textContent = "";
+                    }, 800);
+                }
+            } else {
+                msg.textContent = "아쉬워요! 다시 한번 생각해보세요. 🤔";
+                msg.className = "text-center mt-4 font-bold text-red-500 dark:text-red-400";
+            }
+        }
+
+        function finishQuiz(category) {
+            const msg = document.getElementById(`quiz-msg-${category}`);
+            const boxId = category === 'ind' ? 'quiz-industry-box' : '';
+            if (!boxId) return;
+            
+            const box = document.getElementById(boxId);
+            if (msg) msg.textContent = "";
+            if (box) {
+                box.innerHTML = `
+                    <div class="text-center py-10 animate-bounce">
+                        <span class="text-6xl">🎉</span>
+                        <h4 class="text-2xl font-bold mt-4 dark:text-white">산업화 마스터 달성!</h4>
+                        <p class="text-gray-600 dark:text-gray-400">경제 성장 역사를 완벽하게 이해했군요!</p>
+                        <button onclick="location.reload()" class="mt-4 text-sm text-blue-500 dark:text-blue-400 underline cursor-pointer">다시 도전하기</button>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
